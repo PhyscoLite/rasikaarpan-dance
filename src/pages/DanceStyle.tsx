@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTrial } from '../context/TrialContext';
+import SEO from '../components/SEO';
 
 const danceStylesData: Record<string, { title: string, desc: string, image: string, longDesc: string }> = {
   'bharatanatyam': {
@@ -69,6 +70,7 @@ const DanceStyle = () => {
 
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+      <SEO title={`${styleData.title} Classes`} description={styleData.desc} />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         {/* Image Section */}
         <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden border border-brand-surface-light group">

@@ -1,10 +1,12 @@
 import React from 'react';
 import { useTrial } from '../context/TrialContext';
+import SEO from '../components/SEO';
 
 const About = () => {
   const { openTrial } = useTrial();
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+      <SEO title="About Us" description="Learn about Rasikaarpan Dance Academy, our history, and our passionate instructors." />
       
       {/* Header Section */}
       <div className="text-center mb-16 md:mb-24">

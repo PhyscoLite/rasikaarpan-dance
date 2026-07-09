@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Filter } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const galleryItems = [
   { id: 1, type: 'image', date: '2024-06-15', src: 'https://res.cloudinary.com/dm3scoj2q/image/upload/v1783509908/WhatsApp_Image_2026-07-02_at_5.34.29_PM_a5w1ag.jpg' },
@@ -25,6 +26,7 @@ const Gallery = () => {
 
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+      <SEO title="Gallery" description="Explore our gallery featuring vibrant dance performances and moments from Rasikaarpan Dance Academy." />
       
       {/* Header Section */}
       <div className="text-center mb-12 md:mb-16">

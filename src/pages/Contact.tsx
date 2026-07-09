@@ -1,9 +1,11 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Contact = () => {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+      <SEO title="Contact Us" description="Get in touch with Rasikaarpan Dance Academy to book a trial or inquire about our dance classes." />
       
       {/* Header Section */}
       <div className="text-center mb-16 md:mb-24">
