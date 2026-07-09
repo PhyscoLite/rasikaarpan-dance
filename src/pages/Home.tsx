@@ -5,6 +5,7 @@ import { ChevronDown, ChevronLeft, ChevronRight, CheckCircle, MapPin, Facebook, 
 
 
 import { useTrial } from '../context/TrialContext';
+import { Testimonials } from "../components/Testimonials";
 
 const Hero = () => {
   const TOTAL_FRAMES = 100;
@@ -472,59 +473,15 @@ const Stats = () => (
   </section>
 );
 
-const EventsTestimonialsLocations = () => (
-  <section className="py-12 px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
-    
-    {/* Upcoming Events */}
-    <div>
-      <h3 className="text-lg font-serif text-brand-gold tracking-widest mb-8 text-center md:text-left uppercase">UPCOMING EVENTS</h3>
-      <div className="space-y-6">
-        {[
-          { date: 'JUN 15', title: 'Annual Arangetram Showcase', desc: 'A grand evening of classical excellence.' },
-          { date: 'JUL 05', title: 'Folk Fusion Workshop', desc: 'Celebrate culture. Learn tradition.' },
-          { date: 'AUG 10', title: 'Contemporary Masterclass', desc: 'Move beyond boundaries.' }
-        ].map((event, i) => (
-          <div key={i} className="flex gap-4">
-            <div className="bg-brand-gold rounded-md flex flex-col items-center justify-center w-16 h-16 shrink-0 text-black">
-              <span className="text-xs font-bold uppercase">{event.date.split(' ')[0]}</span>
-              <span className="text-xl font-bold leading-none">{event.date.split(' ')[1]}</span>
-            </div>
-            <div>
-              <h4 className="text-brand-gold font-serif text-lg">{event.title}</h4>
-              <p className="text-xs text-gray-400 mb-1">{event.desc}</p>
-              <button className="text-[10px] uppercase tracking-wider text-gray-300 hover:text-brand-gold flex items-center font-bold">
-                VIEW DETAILS <ChevronRight size={12} className="ml-1" />
-              </button>
-            </div>
-          </div>
-        ))}
-        <button className="w-full border border-brand-surface-light text-gray-300 text-xs font-semibold py-3 mt-4 hover:border-brand-gold hover:text-brand-gold transition-colors">
-          VIEW ALL EVENTS
-        </button>
-      </div>
-    </div>
 
-    {/* Testimonials */}
-    <div className="lg:border-x lg:border-y-0 border-y py-8 lg:py-0 border-brand-surface-light lg:px-8 flex flex-col justify-center items-center text-center">
-      <h3 className="text-lg font-serif text-brand-gold tracking-widest mb-8 uppercase">WHAT OUR STUDENTS SAY</h3>
-      <Quote className="text-brand-gold mb-6" size={32} />
-      <p className="text-gray-300 font-light leading-relaxed mb-6 italic">
-        "Rasikaarpan Dance is not just a dance class, it's a family. I've grown in confidence, discipline, and discovered my passion."
-      </p>
-      <div className="flex gap-1 mb-4 text-brand-gold">
-        {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
-      </div>
-      <p className="text-sm font-medium text-white">— Ananya, Student</p>
-      
-      <div className="flex justify-center mt-8 gap-2">
-        <div className="w-2 h-2 rounded-full bg-white"></div>
-        <div className="w-2 h-2 rounded-full bg-gray-600"></div>
-        <div className="w-2 h-2 rounded-full bg-gray-600"></div>
-      </div>
+const TestimonialsLocations = () => (
+  <section className="py-12 px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div className="lg:col-span-2">
+      <Testimonials />
     </div>
 
     {/* Locations */}
-    <div className="md:pl-8">
+    <div className="md:pl-8 flex flex-col justify-center h-full">
       <h3 className="text-lg font-serif text-brand-gold tracking-widest mb-8 text-center md:text-left uppercase">CLASS LOCATIONS</h3>
       <div className="space-y-6">
         {[
@@ -545,7 +502,6 @@ const EventsTestimonialsLocations = () => (
         </button>
       </div>
     </div>
-
   </section>
 );
 
@@ -559,7 +515,7 @@ export default function Home() {
        <ClassesInfo />
        <GurusAndHighlights />
        <Stats />
-       <EventsTestimonialsLocations />
+       <TestimonialsLocations />
     </div>
   );
 }
