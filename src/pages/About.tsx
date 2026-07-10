@@ -36,7 +36,7 @@ const About = () => {
         {/* Placeholder image related to the journey */}
         <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-brand-surface-light group">
            <div className="absolute inset-0 bg-brand-gold/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500 z-10"></div>
-           <img src="https://res.cloudinary.com/dm3scoj2q/image/upload/v1783582515/e5a0f9c1-444c-4279-adf3-d698c23d229e.png" alt="Dance performance" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700 grayscale-[20%]" />
+           <img src="https://res.cloudinary.com/dm3scoj2q/image/upload/v1783582515/e5a0f9c1-444c-4279-adf3-d698c23d229e.png" alt="Dance performance" className="w-full h-full object-cover object-top scale-105 group-hover:scale-100 transition-transform duration-700 grayscale-[20%]" />
         </div>
       </div>
 
@@ -98,7 +98,7 @@ const About = () => {
 
         <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
           <div className="w-full md:w-1/3 aspect-[3/4] shrink-0 rounded-lg overflow-hidden border-2 border-brand-gold/30 p-2 relative group">
-            <img src="https://res.cloudinary.com/dm3scoj2q/image/upload/v1783509908/WhatsApp_Image_2026-07-02_at_5.34.29_PM_a5w1ag.jpg" alt="Shri Shrikant K. Dhabadgaonkar" className="w-full h-full object-cover rounded-md group-hover:scale-105 transition-transform duration-700 grayscale-[30%] hover:grayscale-0" />
+            <img src="https://res.cloudinary.com/dm3scoj2q/image/upload/v1783509908/WhatsApp_Image_2026-07-02_at_5.34.29_PM_a5w1ag.jpg" alt="Shri Shrikant K. Dhabadgaonkar" className="w-full h-full object-cover object-top rounded-md group-hover:scale-105 transition-transform duration-700 grayscale-[30%] hover:grayscale-0" />
           </div>
           <div className="w-full md:w-2/3">
             <h3 className="text-3xl font-serif text-white mb-2">Shri Shrikant K. Dhabadgaonkar</h3>

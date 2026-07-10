@@ -91,7 +91,7 @@ const Gallery = () => {
                 <img 
                   src={item.src} 
                   alt="Gallery Item" 
-                  className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+                  className="w-full h-full object-cover object-top grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-brand-surface text-gray-500">

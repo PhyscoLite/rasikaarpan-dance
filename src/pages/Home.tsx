@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronLeft, ChevronRight, CheckCircle, MapPin, Facebook, Instagram, Youtube, MessageCircle, Star, Quote, Menu, X } from 'lucide-react';
 
 
@@ -7,227 +7,69 @@ import { ChevronDown, ChevronLeft, ChevronRight, CheckCircle, MapPin, Facebook, 
 import { useTrial } from '../context/TrialContext';
 import { Testimonials } from "../components/Testimonials";
 
+const heroImages = [
+  "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783656912/WhatsApp_Image_2026-07-02_at_5.34.29_PM_hu1yhj.jpg",
+  "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783583371/b4fd6049-30ea-4d13-b107-794a325ae1bd.png",
+  "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783582515/e5a0f9c1-444c-4279-adf3-d698c23d229e.png"
+];
+
 const Hero = () => {
-  const TOTAL_FRAMES = 100;
-  const [loadedFrames, setLoadedFrames] = useState<Record<number, HTMLImageElement>>({});
-  const [isReady, setIsReady] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const containerRef = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const { openTrial } = useTrial();
-  
-  const loadedFramesRef = useRef<Record<number, HTMLImageElement>>({});
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 768;
-    const queue = [0, TOTAL_FRAMES - 1];
-    
-    const addSub = (start: number, end: number) => {
-      if (end - start <= 1) return;
-      const mid = Math.floor((start + end) / 2);
-      queue.push(mid);
-      addSub(start, mid);
-      addSub(mid, end);
-    };
-    addSub(0, TOTAL_FRAMES - 1);
-
-    let loadedCount = 0;
-    let currentIndex = 0;
-    let isMounted = true;
-
-    const loadNext = () => {
-      if (!isMounted || currentIndex >= queue.length) return;
-      const frameIdx = queue[currentIndex++];
-      
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      const percent = (frameIdx / (TOTAL_FRAMES - 1)) * 100;
-      img.src = `https://res.cloudinary.com/dm3scoj2q/video/upload/${isMobile ? 'w_960' : 'w_1280'},f_auto,q_auto,so_${percent.toFixed(2)}p/v1783493342/3d-scroll_yttlsx.jpg`;
-      
-      img.onload = () => {
-        if (!isMounted) return;
-        loadedFramesRef.current[frameIdx] = img;
-        loadedCount++;
-        
-        setLoadedFrames(prev => ({ ...prev, [frameIdx]: img }));
-        setProgress(Math.round((loadedCount / TOTAL_FRAMES) * 100));
-        
-        if (loadedCount >= 25 && !isReady) {
-          setIsReady(true);
-        }
-        
-        loadNext();
-      };
-      
-      img.onerror = () => {
-        if (!isMounted) return;
-        loadNext();
-      };
-    };
-
-    const CONCURRENCY = 4;
-    for (let i = 0; i < Math.min(CONCURRENCY, queue.length); i++) {
-      loadNext();
-    }
-    
-    return () => { isMounted = false; };
-  }, []);
-
-  const currentFrameRef = useRef(0);
-  const targetFrameRef = useRef(0);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      
-      const rect = containerRef.current.getBoundingClientRect();
-      const scrollY = -rect.top;
-      const maxScroll = rect.height - window.innerHeight;
-      
-      if (scrollY < 0) {
-        targetFrameRef.current = 0;
-      } else if (scrollY > maxScroll) {
-        targetFrameRef.current = TOTAL_FRAMES - 1;
-      } else {
-        const fraction = scrollY / maxScroll;
-        targetFrameRef.current = Math.min(TOTAL_FRAMES - 1, fraction * (TOTAL_FRAMES - 1));
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    let animationFrameId: number;
-    
-    const renderLoop = () => {
-      currentFrameRef.current += (targetFrameRef.current - currentFrameRef.current) * 0.08;
-      
-      const frameToDraw = Math.round(currentFrameRef.current);
-      
-      if (canvasRef.current) {
-        const ctx = canvasRef.current.getContext('2d');
-        if (ctx) {
-          let drawIdx = frameToDraw;
-          if (!loadedFramesRef.current[drawIdx]) {
-            let offset = 1;
-            while (offset < TOTAL_FRAMES) {
-              if (loadedFramesRef.current[drawIdx - offset]) {
-                drawIdx = drawIdx - offset;
-                break;
-              }
-              if (loadedFramesRef.current[drawIdx + offset]) {
-                drawIdx = drawIdx + offset;
-                break;
-              }
-              offset++;
-            }
-          }
-          
-          const img = loadedFramesRef.current[drawIdx];
-          if (img) {
-            if (canvasRef.current.width !== img.width) {
-               canvasRef.current.width = img.width;
-               canvasRef.current.height = img.height;
-            }
-            ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-            ctx.drawImage(img, 0, 0);
-            
-            // Chroma key (green screen removal)
-            const frame = ctx.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
-            const data = frame.data;
-            const l = data.length;
-            for (let i = 0; i < l; i += 4) {
-              const r = data[i];
-              const g = data[i + 1];
-              const b = data[i + 2];
-              
-              if (g > 80 && g > r * 1.2 && g > b * 1.2) {
-                 if (g > 110 && g > r * 1.4 && g > b * 1.4) {
-                   data[i + 3] = 0;
-                 } else {
-                   const alpha = Math.max(0, 255 - (g - Math.max(r, b)) * 3);
-                   data[i + 3] = Math.min(data[i + 3], alpha);
-                 }
-              }
-            }
-            ctx.putImageData(frame, 0, 0);
-          }
-        }
-      }
-      
-      animationFrameId = requestAnimationFrame(renderLoop);
-    };
-    
-    animationFrameId = requestAnimationFrame(renderLoop);
-    return () => cancelAnimationFrame(animationFrameId);
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-[480vh] w-full">
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        {/* Background gradient for depth */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-800 via-brand-bg to-brand-bg opacity-60 z-0 pointer-events-none"></div>
-        
-        <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col md:flex-row items-center justify-between h-full pt-20 md:pt-24 pointer-events-none">
-          {/* Left Text */}
-          <div className="w-full md:w-1/4 text-center md:text-left pointer-events-auto mt-4 md:mt-24 z-20">
+    <section className="relative h-screen w-full flex items-center overflow-hidden">
+      {/* Background Image Slideshow */}
+      <div className="absolute inset-0 z-0 bg-black">
+        {heroImages.map((src, index) => (
+          <img 
+            key={src}
+            src={src} 
+            alt="Hero Background" 
+            className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+          />
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent md:w-3/4"></div>
+      </div>
+      
+      <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col md:flex-row items-center justify-between h-full pt-20 md:pt-24">
+        {/* Left Content */}
+        <div className="w-full md:w-1/2 text-left mt-[200px]">
+          <div className="mb-6 hidden md:block">
             <h2 className="text-brand-gold text-2xl md:text-5xl font-cinzel font-light mb-1 md:mb-2 drop-shadow-md">25+</h2>
             <p className="text-xs md:text-xl tracking-[0.2em] font-light text-gray-300 uppercase leading-snug drop-shadow-md">
-              YEARS OF<span className="md:hidden"> </span><br className="hidden md:block" />NURTURING<span className="md:hidden"> </span><br className="hidden md:block" />TALENT
+              YEARS OF NURTURING TALENT
             </p>
-            <div className="w-8 h-[1px] bg-brand-gold mt-2 md:mt-4 mx-auto md:mx-0"></div>
+            <div className="w-8 h-[1px] bg-brand-gold mt-4 mx-auto md:mx-0"></div>
           </div>
-
-          {/* Center Image -> Canvas */}
-          <div className="absolute md:relative inset-0 md:inset-auto md:w-2/4 h-full flex justify-center items-end pointer-events-auto z-10 overflow-hidden md:overflow-visible">
-            <div className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full bg-brand-gold/40 blur-[80px] md:blur-[120px] top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 mix-blend-screen pointer-events-none"></div>
-            <div className="absolute w-[150px] h-[200px] md:w-[250px] md:h-[300px] rounded-full bg-[#ffeba6]/30 blur-[60px] md:blur-[90px] top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 mix-blend-screen pointer-events-none"></div>
-            
-            <div className="relative z-10 w-full h-[90%] md:h-[90%] flex items-end justify-center">
-              <canvas 
-                ref={canvasRef} 
-                className="w-[500px] h-[750px] md:w-full md:h-full max-w-full object-contain object-bottom drop-shadow-2xl transition-opacity duration-1000 scale-[0.7] md:scale-100 -translate-y-[40px] md:translate-y-0 origin-bottom"
-                style={{ 
-                  maskImage: 'linear-gradient(to top, transparent 0%, black 15%)', 
-                  WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 15%)',
-                  opacity: isReady ? 1 : 0 
-                }}
-              />
-              
-              {!isReady && (
-                <div className="absolute top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center p-4 bg-brand-bg/50 rounded-lg backdrop-blur-sm">
-                  <div className="w-32 md:w-48 h-[2px] bg-gray-800 rounded-full overflow-hidden mb-3">
-                    <div className="h-full bg-brand-gold transition-all duration-300 ease-out" style={{ width: `${progress}%` }}></div>
-                  </div>
-                  <span className="text-[8px] md:text-[10px] text-brand-gold font-serif tracking-[0.2em] uppercase">Loading Sequence {progress}%</span>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Right Content */}
-          <div className="w-full md:w-1/3 text-center md:text-left pointer-events-auto mt-auto mb-6 md:mt-24 md:mb-0 z-20 pb-2 md:pb-0">
-            <h1 className="font-cinzel text-white tracking-widest mb-1 md:mb-2 leading-tight drop-shadow-lg"><span className="font-sans font-light text-2xl sm:text-3xl md:text-[48px]">RASIKAARPAN</span><br/><span className="lowercase text-brand-gold border-b-2 border-brand-gold/30 pb-1 md:pb-2 inline-block text-2xl sm:text-3xl md:text-[48px]">dance</span></h1>
-            
-            <p className="text-gray-200 mt-2 md:mt-8 mb-4 md:mb-10 leading-relaxed text-[10px] sm:text-sm lg:text-base font-light text-center md:text-left max-w-sm mx-auto md:max-w-none drop-shadow-md bg-black/20 md:bg-transparent rounded px-2 md:px-0 py-1 md:py-0 backdrop-blur-sm md:backdrop-blur-none">
-              <span className="font-semibold text-white">Rooted in Tradition. Committed to Excellence.</span><br className="hidden md:block"/><br className="hidden md:block"/>
-              <span className="hidden md:inline">Rasikaarpan Dance - Academy of Bharatanatyam is a premier dance institution dedicated to preserving the rich heritage of Indian classical dance while embracing the evolution of modern dance forms.</span>
-            </p>
-            
-            <div className="flex justify-center md:justify-start gap-2 md:gap-4 flex-row w-full sm:w-auto px-4 md:px-0">
-              <button 
-                onClick={openTrial}
-                className="flex-1 sm:flex-none bg-brand-gold text-black font-semibold px-2 py-2 md:px-6 md:py-3 rounded-sm text-[10px] md:text-sm hover:bg-brand-gold-dark transition-colors whitespace-nowrap"
-              >
-                BOOK A TRIAL
-              </button>
-              <button className="flex-1 sm:flex-none border border-brand-gold text-brand-gold font-semibold px-2 py-2 md:px-6 md:py-3 rounded-sm text-[10px] md:text-sm hover:bg-brand-gold/10 transition-colors whitespace-nowrap bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
-                EXPLORE CLASSES
-              </button>
-            </div>
+          
+          <h1 className="font-cinzel text-white tracking-widest mb-4 leading-tight drop-shadow-lg">
+            <span className="font-sans font-light text-3xl sm:text-4xl md:text-[56px]">RASIKAARPAN</span><br/>
+            <span className="lowercase text-brand-gold border-b-2 border-brand-gold/30 pb-2 inline-block text-3xl sm:text-4xl md:text-[56px]">dance</span>
+          </h1>
+          
+          <p className="text-gray-200 mt-4 md:mt-8 mb-8 leading-relaxed text-sm lg:text-base font-light max-w-lg mx-auto md:mx-0 drop-shadow-md">
+            <span className="font-semibold text-white">Rooted in Tradition. Committed to Excellence.</span><br /><br />
+            Rasikaarpan Dance - Academy of Bharatanatyam is a premier dance institution dedicated to preserving the rich heritage of Indian classical dance while embracing the evolution of modern dance forms.
+          </p>
+          
+          <div className="flex justify-center md:justify-start gap-4 flex-row w-full sm:w-auto">
+            <button 
+              onClick={openTrial}
+              className="bg-brand-gold text-black font-semibold px-6 py-3 md:px-8 md:py-4 rounded-sm text-xs md:text-sm hover:bg-brand-gold-dark transition-colors whitespace-nowrap"
+            >
+              BOOK A TRIAL
+            </button>
+            <button className="border border-brand-gold text-brand-gold font-semibold px-6 py-3 md:px-8 md:py-4 rounded-sm text-xs md:text-sm hover:bg-brand-gold/10 transition-colors whitespace-nowrap bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
+              EXPLORE CLASSES
+            </button>
           </div>
         </div>
       </div>
@@ -254,7 +96,7 @@ const DanceStyleCard = ({ image, title, desc, slug, className = "" }: { image: s
   <Link to={`/classes/${slug}`} className={`group relative overflow-hidden rounded-lg border border-brand-surface-light bg-brand-surface p-3 md:p-4 transition-all hover:border-brand-gold/50 cursor-pointer flex flex-col items-center ${className} block`}>
     <div className="w-full h-48 md:h-64 overflow-hidden rounded-md mb-4 md:mb-6 relative bg-black">
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-      <img src={image} alt={title} className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" />
+      <img src={image} alt={title} className="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-transform duration-700" />
     </div>
     <h3 className="text-lg md:text-xl font-serif text-brand-gold mb-1 md:mb-2">{title}</h3>
     <p className="text-xs md:text-sm text-gray-400 text-center font-light mb-4 md:mb-6 min-h-[32px] md:min-h-[40px] px-2">{desc}</p>
@@ -374,7 +216,7 @@ const GurusAndHighlights = () => (
 
       <div className="flex flex-col sm:flex-row gap-6 md:gap-8 items-center sm:items-start text-center sm:text-left">
         <div className="w-40 h-56 md:w-48 md:h-64 shrink-0 rounded-lg overflow-hidden border-2 border-brand-gold p-1 relative">
-          <img src="https://i.pinimg.com/736x/51/e5/3f/51e53ff7f0187a281eb2c93d85cdfca7.jpg" alt="Guru" className="w-full h-full object-cover rounded-md" />
+          <img src="https://i.pinimg.com/736x/51/e5/3f/51e53ff7f0187a281eb2c93d85cdfca7.jpg" alt="Guru" className="w-full h-full object-cover object-top rounded-md" />
         </div>
         <div>
           <h3 className="text-2xl font-serif text-white mb-6">Guru. Mentor. Inspiration.</h3>
@@ -424,7 +266,7 @@ const GurusAndHighlights = () => (
             "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783509908/WhatsApp_Image_2026-07-02_at_5.34.29_PM_a5w1ag.jpg"
           ].map((img, i) => (
             <div key={i} className="w-[calc(50vw-2rem)] sm:w-[280px] lg:w-[280px] aspect-[4/3] shrink-0 rounded-lg overflow-hidden border border-brand-gold/30">
-              <img src={img} alt="Highlight" className="w-full h-full object-cover hover:scale-105 transition-transform" />
+              <img src={img} alt="Highlight" className="w-full h-full object-cover object-top hover:scale-105 transition-transform" />
             </div>
           ))}
         </div>
