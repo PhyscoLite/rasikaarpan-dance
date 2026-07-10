@@ -33,8 +33,7 @@ const Astrology = () => {
   ];
 
   const scrollToBooking = () => {
-    // Basic anchor link behavior for CTA buttons
-    window.location.href = "mailto:astrologershrikant@example.com?subject=Astrology Consultation Booking";
+    window.open("https://wa.me/919115731105", "_blank");
   };
 
   return (
@@ -298,31 +297,16 @@ const Astrology = () => {
           <h2 className="text-3xl md:text-5xl font-serif text-white">What Our Clients Say</h2>
         </div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            {
-              quote: "Astrologer Shrikant's guidance gave me clarity during one of the most challenging phases of my career. His predictions were remarkably accurate.",
-              author: "Rahul S."
-            },
-            {
-              quote: "The consultation was detailed, practical, and genuinely helpful. The remedies were simple to follow and gave me confidence.",
-              author: "Priya M."
-            },
-            {
-              quote: "I consulted for marriage compatibility and relationship guidance. The advice was insightful and helped us make informed decisions.",
-              author: "Ankit & Neha"
-            }
-          ].map((testimonial, i) => (
-            <div key={i} className="bg-brand-surface border border-white/5 p-8 rounded-sm">
-              <div className="flex gap-1 text-brand-gold mb-6">
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-                <Star size={16} fill="currentColor" />
-              </div>
-              <p className="text-gray-300 font-light leading-relaxed mb-6 italic">"{testimonial.quote}"</p>
-              <p className="text-white font-serif tracking-wide">— {testimonial.author}</p>
+            "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783685531/WhatsApp_Image_2026-07-10_at_5.33.21_PM_sptmca.jpg",
+            "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783685529/WhatsApp_Image_2026-07-10_at_5.33.21_PM_1_trp5ip.jpg",
+            "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783685528/WhatsApp_Image_2026-07-10_at_5.33.22_PM_oa4qmv.jpg",
+            "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783685527/WhatsApp_Image_2026-07-10_at_5.33.22_PM_1_xy6a1p.jpg",
+            "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783685526/WhatsApp_Image_2026-07-10_at_5.33.23_PM_qiwzb9.jpg"
+          ].map((imgSrc, i) => (
+            <div key={i} className="bg-brand-surface border border-white/5 rounded-sm overflow-hidden flex flex-col items-center justify-center p-2 shadow-lg">
+              <img src={imgSrc} alt={`Testimonial ${i + 1}`} className="w-full h-auto object-contain max-h-[600px]" />
             </div>
           ))}
         </div>

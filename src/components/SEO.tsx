@@ -7,10 +7,10 @@ interface SEOProps {
 }
 
 const SEO = ({ title, description }: SEOProps) => {
-  const defaultTitle = "Rasikaarpan Dance Academy | Bharatanatyam & Beyond";
-  const defaultDescription = "Join Rasikaarpan Dance Academy to explore Bharatanatyam, Kathak, Contemporary, Folk, and more. Experience the joy of movement rooted in tradition.";
+  const defaultTitle = "Astrologer Shrikant & Rasikaarpan Dance Academy";
+  const defaultDescription = "Unlock the Guidance Written in Your Stars with Astrologer Shrikant. Also join Rasikaarpan Dance Academy to explore Bharatanatyam, Kathak, Contemporary, Folk, and more.";
   
-  const currentTitle = title ? `${title} | Rasikaarpan` : defaultTitle;
+  const currentTitle = title ? `${title} | Shrikant & Rasikaarpan` : defaultTitle;
   const currentDescription = description || defaultDescription;
 
   return (
