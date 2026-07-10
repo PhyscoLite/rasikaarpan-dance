@@ -45,7 +45,7 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="text-white font-medium mb-1 tracking-widest uppercase text-sm">Phone</h4>
-                <p className="text-gray-400 font-light text-sm md:text-base">+91 98765 43210</p>
+                <p className="text-gray-400 font-light text-sm md:text-base">9115731105</p>
                 <p className="text-gray-500 font-light text-xs mt-1">Mon-Sat, 9:00 AM - 8:00 PM</p>
               </div>
             </div>
@@ -110,7 +110,7 @@ const Contact = () => {
                 <input 
                   type="tel" 
                   className="w-full bg-brand-bg border border-brand-surface-light text-white px-4 py-3 rounded-sm text-sm focus:outline-none focus:border-brand-gold transition-colors"
-                  placeholder="+91 98765 43210"
+                  placeholder="9115731105"
                 />
               </div>
             </div>

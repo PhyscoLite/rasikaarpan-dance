@@ -7,8 +7,7 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12">
       {/* Brand */}
       <div className="col-span-1 sm:col-span-2 lg:col-span-1">
-        <h2 className="text-3xl font-cinzel text-white tracking-widest mb-1"><span className="font-sans font-light">RASIKAARPAN</span> dance</h2>
-        <p className="text-brand-gold text-sm font-serif mb-6">Academy of Bharatanatyam</p>
+        <img src="https://res.cloudinary.com/dm3scoj2q/image/upload/v1783680487/Rasikaarpan_Ensemble_of_Dance_qsdo6w.png" alt="Rasikaarpan" className="h-[72px] md:h-[96px] object-contain mb-4" />
         <p className="text-gray-400 text-sm leading-relaxed mb-6">
           Preserving tradition. Nurturing talent. Inspiring generations.
         </p>

@@ -97,8 +97,7 @@ const SectionHeading = ({ title, subtitle }: { title: string, subtitle?: string 
 const DanceStyleCard = ({ image, title, desc, slug, className = "" }: { image: string, title: string, desc: string, slug: string, className?: string }) => (
   <Link to={`/classes/${slug}`} className={`group relative overflow-hidden rounded-lg border border-brand-surface-light bg-brand-surface p-3 md:p-4 transition-all hover:border-brand-gold/50 cursor-pointer flex flex-col items-center ${className} block`}>
     <div className="w-full h-48 md:h-64 overflow-hidden rounded-md mb-4 md:mb-6 relative bg-black">
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-      <img src={image} alt={title} className="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-transform duration-700" />
+      <img src={image} alt={title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" />
     </div>
     <h3 className="text-lg md:text-xl font-serif text-brand-gold mb-1 md:mb-2">{title}</h3>
     <p className="text-xs md:text-sm text-gray-400 text-center font-light mb-4 md:mb-6 min-h-[32px] md:min-h-[40px] px-2">{desc}</p>
@@ -110,7 +109,7 @@ const DanceStyleCard = ({ image, title, desc, slug, className = "" }: { image: s
 
 const DanceStyles = () => {
   const styles = [
-    { title: "Folk", desc: "Celebrating culture. Honoring roots.", slug: "folk", image: "https://i.pinimg.com/736x/4a/db/bd/4adbbdb0b9bcc096e81e0187bee46aad.jpg" },
+    { title: "Folk", desc: "Celebrating culture. Honoring roots.", slug: "folk", image: "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783681072/WhatsApp_Image_2026-07-10_at_4.24.04_PM_ntxte5.jpg" },
     { title: "Kathak", desc: "Rhythm. Expressions. Storytelling.", slug: "kathak", image: "https://i.pinimg.com/736x/ed/bc/0c/edbc0cbaf1d59936a887c705b5fcbb76.jpg" },
     { title: "Bharatanatyam", desc: "The grace. The story. The soul of India.", slug: "bharatanatyam", image: "https://i.pinimg.com/736x/4e/67/2c/4e672ccadd0771c70a19af61321a46db.jpg" },
     { title: "Semi Classical", desc: "A blend of traditional grace and modern flair.", slug: "semi-classical", image: "https://i.pinimg.com/736x/e3/ea/60/e3ea602afc542fa92c4f195b651ea1ef.jpg" },

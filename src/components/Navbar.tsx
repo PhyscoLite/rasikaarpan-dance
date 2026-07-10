@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav className="flex items-center justify-between py-3 px-4 md:py-4 md:px-12 fixed top-0 w-full z-50 bg-brand-bg/90 backdrop-blur-md border-b border-white/5 transition-all">
       <div className="flex flex-col items-center">
         <Link to="/">
-          <h1 className="text-xl md:text-3xl font-cinzel text-white tracking-widest"><span className="font-sans font-light">RASIKAARPAN</span> <span className="hidden sm:inline">dance</span></h1>
+          <img src="https://res.cloudinary.com/dm3scoj2q/image/upload/v1783680487/Rasikaarpan_Ensemble_of_Dance_qsdo6w.png" alt="Rasikaarpan" className="h-[50px] md:h-[68px] w-auto object-contain" />
         </Link>
       </div>
       <div className="hidden lg:flex items-center space-x-8 text-sm font-semibold tracking-wider text-gray-300">

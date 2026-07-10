@@ -52,7 +52,7 @@ const TrialPopup = () => {
                   type="tel" 
                   required
                   className="w-full bg-brand-bg border border-brand-surface-light text-white px-4 py-3 rounded-sm text-sm focus:outline-none focus:border-brand-gold transition-colors"
-                  placeholder="+91 98765 43210"
+                  placeholder="9115731105"
                 />
               </div>
             </div>

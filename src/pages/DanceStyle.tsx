@@ -19,7 +19,7 @@ const danceStylesData: Record<string, { title: string, desc: string, image: stri
   'folk': {
     title: 'Folk',
     desc: 'Celebrating culture. Honoring roots.',
-    image: 'https://i.pinimg.com/736x/4a/db/bd/4adbbdb0b9bcc096e81e0187bee46aad.jpg',
+    image: 'https://res.cloudinary.com/dm3scoj2q/image/upload/v1783681072/WhatsApp_Image_2026-07-10_at_4.24.04_PM_ntxte5.jpg',
     longDesc: 'Indian folk dances are simple dances, and are performed to express joy and happiness among themselves. Folk dances are performed for every possible occasion, to celebrate the arrival of seasons, birth of a child, a wedding and festivals.'
   },
   'semi-classical': {
@@ -144,7 +144,7 @@ const DanceStyle = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm">
            <div className="flex flex-col items-center gap-2">
              <span className="text-brand-gold uppercase tracking-widest text-xs font-semibold">Call Us</span>
-             <span className="text-white">+91 98765 43210</span>
+             <span className="text-white">9115731105</span>
            </div>
            <div className="hidden sm:block w-[1px] h-10 bg-brand-surface-light"></div>
            <div className="flex flex-col items-center gap-2">
