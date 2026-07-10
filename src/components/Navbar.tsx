@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link to="/" className="hover:text-brand-gold transition-colors">HOME</Link>
         <Link to="/about" className="hover:text-brand-gold transition-colors">ABOUT</Link>
         <div className="relative group cursor-pointer flex items-center py-2">
-          <span className="hover:text-brand-gold transition-colors">CLASSES</span>
+          <Link to="/classes" className="hover:text-brand-gold transition-colors">CLASSES</Link>
           <ChevronDown size={14} className="ml-1" />
           <div className="absolute top-full left-0 w-48 bg-brand-bg border border-white/10 rounded-sm shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 py-2">
             <Link to="/classes/bharatanatyam" className="block px-4 py-2 hover:text-brand-gold hover:bg-white/5 transition-colors">Bharatanatyam</Link>
@@ -51,8 +51,8 @@ const Navbar = () => {
           <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-brand-gold font-semibold tracking-wider text-sm transition-colors">HOME</Link>
           <Link to="/about" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-brand-gold font-semibold tracking-wider text-sm transition-colors">ABOUT</Link>
           <div className="flex flex-col items-center w-full cursor-pointer" onClick={() => setIsMobileClassesOpen(!isMobileClassesOpen)}>
-            <div className="text-white hover:text-brand-gold font-semibold tracking-wider text-sm transition-colors flex items-center">
-              CLASSES <ChevronDown size={14} className={`ml-1 transition-transform ${isMobileClassesOpen ? 'rotate-180' : ''}`} />
+            <div className="text-white font-semibold tracking-wider text-sm transition-colors flex items-center">
+              <Link to="/classes" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-gold">CLASSES</Link> <ChevronDown size={14} className={`ml-2 transition-transform ${isMobileClassesOpen ? 'rotate-180' : ''}`} />
             </div>
             {isMobileClassesOpen && (
               <div className="flex flex-col items-center space-y-3 mt-4 text-gray-300 text-sm">

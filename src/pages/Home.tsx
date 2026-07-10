@@ -36,12 +36,12 @@ const Hero = () => {
             className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent md:w-3/4"></div>
+        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/90 via-black/50 to-transparent md:w-3/4"></div>
       </div>
       
       <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col md:flex-row items-center justify-between h-full pt-20 md:pt-24">
         {/* Left Content */}
-        <div className="w-full md:w-1/2 text-left mt-[200px]">
+        <div className="w-full md:w-1/2 text-left mt-[200px] mb-[100px]">
           <div className="mb-6 hidden md:block">
             <h2 className="text-brand-gold text-2xl md:text-5xl font-cinzel font-light mb-1 md:mb-2 drop-shadow-md">25+</h2>
             <p className="text-xs md:text-xl tracking-[0.2em] font-light text-gray-300 uppercase leading-snug drop-shadow-md">
@@ -57,7 +57,7 @@ const Hero = () => {
           
           <p className="text-gray-200 mt-4 md:mt-8 mb-8 leading-relaxed text-sm lg:text-base font-light max-w-lg mx-auto md:mx-0 drop-shadow-md">
             <span className="font-semibold text-white">Rooted in Tradition. Committed to Excellence.</span><br /><br />
-            Rasikaarpan Dance - Academy of Bharatanatyam is a premier dance institution dedicated to preserving the rich heritage of Indian classical dance while embracing the evolution of modern dance forms.
+            Rasikaarpan Dance - Academy of Indian Dance Styles is a premier dance institution dedicated to preserving the rich heritage of Indian Folk and classical dances while embracing the evolution of modern dance forms.
           </p>
           
           <div className="flex justify-center md:justify-start gap-4 flex-row w-full sm:w-auto">
@@ -67,9 +67,11 @@ const Hero = () => {
             >
               BOOK A TRIAL
             </button>
-            <button className="border border-brand-gold text-brand-gold font-semibold px-6 py-3 md:px-8 md:py-4 rounded-sm text-xs md:text-sm hover:bg-brand-gold/10 transition-colors whitespace-nowrap bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
-              EXPLORE CLASSES
-            </button>
+            <Link to="/classes">
+              <button className="border border-brand-gold text-brand-gold font-semibold px-6 py-3 md:px-8 md:py-4 rounded-sm text-xs md:text-sm hover:bg-brand-gold/10 transition-colors whitespace-nowrap bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
+                EXPLORE CLASSES
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -124,7 +126,7 @@ const DanceStyles = () => {
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {styles.map((style, idx) => (
-            <DanceStyleCard key={idx} {...style} className={idx === 4 ? "lg:col-span-2" : ""} />
+            <DanceStyleCard key={idx} {...style} className={idx === 0 ? "lg:col-span-2" : ""} />
           ))}
         </div>
       </div>
@@ -327,9 +329,7 @@ const TestimonialsLocations = () => (
       <h3 className="text-lg font-serif text-brand-gold tracking-widest mb-8 text-center md:text-left uppercase">CLASS LOCATIONS</h3>
       <div className="space-y-6">
         {[
-          { city: 'Thanjavur', sub: '(Main Studio)', state: 'Tamil Nadu' },
-          { city: 'Pattukkottai', sub: '', state: 'Tamil Nadu' },
-          { city: 'Tiruvarur', sub: '', state: 'Tamil Nadu' }
+          { city: 'Nagpur', sub: '(Main Studio)', state: 'Maharashtra' }
         ].map((loc, i) => (
           <div key={i} className="flex gap-4 items-start">
             <MapPin className="text-brand-gold shrink-0 mt-1" size={20} />

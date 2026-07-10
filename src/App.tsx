@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
+import Classes from './pages/Classes';
 import DanceStyle from './pages/DanceStyle';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
@@ -25,6 +26,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/classes" element={<Classes />} />
               <Route path="/classes/:styleId" element={<DanceStyle />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/contact" element={<Contact />} />

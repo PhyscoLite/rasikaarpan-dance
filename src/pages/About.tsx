@@ -52,7 +52,7 @@ const About = () => {
               From beginners taking their first dance steps to performers representing the academy on prestigious stages, our students continue to uphold the values of dedication, respect, and artistic excellence.
             </p>
             <p>
-              Today, Rasikaarpan proudly serves students through its centres in Thanjavur, Pattukkottai, Tiruvarur, and continues to expand its reach through quality dance education.
+              Today, Rasikaarpan proudly serves students through its centres in Nagpur, Maharashtra, and continues to expand its reach through quality dance education.
             </p>
           </div>
         </div>

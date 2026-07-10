@@ -34,8 +34,8 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="text-white font-medium mb-1 tracking-widest uppercase text-sm">Main Studio</h4>
-                <p className="text-gray-400 font-light text-sm md:text-base">Thanjavur, Tamil Nadu, India</p>
-                <p className="text-gray-500 font-light text-xs mt-1">Other Branches: Pattukkottai, Tiruvarur</p>
+                <p className="text-gray-400 font-light text-sm md:text-base">Nagpur, Maharashtra, India</p>
+                <p className="text-gray-500 font-light text-xs mt-1">Visit us for offline classes</p>
               </div>
             </div>
 
