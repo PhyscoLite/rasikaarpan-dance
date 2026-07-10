@@ -85,7 +85,7 @@ const Astrology = () => {
             <div className="relative">
               <div className="aspect-[4/5] rounded-t-full overflow-hidden border border-brand-gold/20 p-2">
                 <img 
-                  src="https://images.unsplash.com/photo-1606553898863-74ad496c5c7d?q=80&w=2070&auto=format&fit=crop" 
+                  src="https://res.cloudinary.com/dm3scoj2q/image/upload/v1783685687/WhatsApp_Image_2026-07-10_at_5.33.28_PM_jisjpu.jpg" 
                   alt="Astrologer Shrikant" 
                   className="w-full h-full object-cover rounded-t-full rounded-b-md opacity-80"
                 />
