@@ -1,11 +1,11 @@
 import fs from "fs/promises";
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
+
 import { createServer as createViteServer } from "vite";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
+
 
 async function startServer() {
   const app = express();
@@ -27,7 +27,7 @@ async function startServer() {
     app.use('*', async (req, res, next) => {
       try {
         const url = req.originalUrl;
-        let template = await fs.readFile(path.resolve(__dirname, 'index.html'), 'utf-8');
+        let template = await fs.readFile(path.resolve(process.cwd(), 'index.html'), 'utf-8');
         template = await vite.transformIndexHtml(url, template);
         res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
       } catch (e) {

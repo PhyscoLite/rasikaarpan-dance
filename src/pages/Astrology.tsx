@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Star, ShieldCheck, Clock, Sparkles, CheckCircle2, ChevronDown, ChevronUp, Sun, Moon, CalendarDays, Key, MapPin } from 'lucide-react';
+import { Star, ShieldCheck, Clock, Sparkles, CheckCircle2, ChevronDown, ChevronUp, Sun, Moon, CalendarDays, Key, MapPin, ShoppingBag, MessageCircle } from 'lucide-react';
+import AstrologyLeadForm from '../components/AstrologyLeadForm';
 
 const Astrology = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isLeadFormOpen, setIsLeadFormOpen] = useState(false);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -33,45 +35,45 @@ const Astrology = () => {
   ];
 
   const scrollToBooking = () => {
-    window.open("https://wa.me/919115731105", "_blank");
+    setIsLeadFormOpen(true);
   };
 
   return (
-    <div className="bg-brand-bg min-h-screen text-gray-200 font-sans selection:bg-brand-gold selection:text-black">
+    <div className="bg-white min-h-screen text-gray-800 font-sans selection:bg-yellow-500 selection:text-white">
       <Helmet>
         <title>Astrologer Shrikant | Trusted Astrology Consultations</title>
         <meta name="description" content="Unlock the Guidance Written in Your Stars. Trusted Astrology Consultations with Astrologer Shrikant." />
       </Helmet>
 
       {/* Header/Logo (Simple) */}
-      <header className="py-6 px-4 md:px-12 border-b border-white/5 flex justify-center bg-brand-surface">
-        <h1 className="text-2xl font-cinzel text-brand-gold tracking-widest text-center">
+      <header className="py-6 px-4 md:px-12 border-b border-gray-200 flex justify-center bg-white">
+        <h1 className="text-2xl font-cinzel text-yellow-600 tracking-widest text-center">
           ASTROLOGER SHRIKANT
         </h1>
       </header>
 
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 px-6 overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1532968961962-810cb2552ce1?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-bg/80 to-brand-bg"></div>
+        <div className="absolute inset-0 opacity-10 opacity-20 bg-[url('https://images.unsplash.com/photo-1532968961962-810cb2552ce1?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-white"></div>
         
         <div className="max-w-4xl mx-auto relative z-10 text-center flex flex-col items-center">
-          <span className="text-brand-gold tracking-[0.2em] text-sm md:text-base font-semibold uppercase mb-4 block">Unlock the Guidance Written in Your Stars</span>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white mb-6 leading-tight">
+          <span className="text-yellow-600 tracking-[0.2em] text-sm md:text-base font-semibold uppercase mb-4 block">Unlock the Guidance Written in Your Stars</span>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif text-gray-900 mb-6 leading-tight">
             Trusted Astrology Consultations
           </h2>
-          <p className="text-lg md:text-xl text-gray-300 font-light mb-8 max-w-2xl leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-700 font-light mb-8 max-w-2xl leading-relaxed">
             Empowering Your Life Through the Timeless Wisdom of Astrology, Numerology & Divine Guidance
           </p>
-          <p className="text-base text-gray-400 mb-10 max-w-3xl leading-relaxed">
+          <p className="text-base text-gray-600 mb-10 max-w-3xl leading-relaxed">
             Life often presents moments of uncertainty—whether it's your career, relationships, marriage, finances, health, or personal growth. During these moments, the right guidance can transform confusion into clarity.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <button onClick={scrollToBooking} className="bg-brand-gold text-black font-semibold px-8 py-4 rounded-sm tracking-widest uppercase hover:bg-brand-gold-dark transition-colors flex items-center justify-center gap-2">
+            <button onClick={scrollToBooking} className="bg-yellow-500 text-white font-semibold px-8 py-4 rounded-sm tracking-widest uppercase hover:bg-yellow-600 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
               <Star size={18} /> Book Consultation
             </button>
-            <button onClick={scrollToBooking} className="border border-brand-gold text-brand-gold font-semibold px-8 py-4 rounded-sm tracking-widest uppercase hover:bg-brand-gold/10 transition-colors">
+            <button onClick={scrollToBooking} className="border border-yellow-500 text-yellow-600 font-semibold px-8 py-4 rounded-sm tracking-widest uppercase hover:bg-yellow-500/10 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
               Talk to Astrologer
             </button>
           </div>
@@ -79,27 +81,27 @@ const Astrology = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-6 bg-brand-surface/50 border-t border-b border-white/5">
+      <section className="py-20 px-6 bg-gray-50 border-t border-b border-gray-200">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <div className="relative">
-              <div className="aspect-[4/5] rounded-t-full overflow-hidden border border-brand-gold/20 p-2">
+              <div className="aspect-[4/5] rounded-t-full overflow-hidden border border-yellow-500/30 p-2">
                 <img 
                   src="https://res.cloudinary.com/dm3scoj2q/image/upload/v1783685687/WhatsApp_Image_2026-07-10_at_5.33.28_PM_jisjpu.jpg" 
                   alt="Astrologer Shrikant" 
                   className="w-full h-full object-cover rounded-t-full rounded-b-md opacity-80"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-brand-surface border border-brand-gold/30 p-6 rounded-md shadow-2xl">
-                <p className="text-4xl font-serif text-brand-gold mb-1">15+</p>
-                <p className="text-xs uppercase tracking-widest text-gray-400">Years of<br/>Experience</p>
+              <div className="absolute -bottom-6 -right-6 bg-white border border-yellow-500/40 p-6 rounded-md shadow-2xl">
+                <p className="text-4xl font-serif text-yellow-600 mb-1">15+</p>
+                <p className="text-xs uppercase tracking-widest text-gray-600">Years of<br/>Experience</p>
               </div>
             </div>
           </div>
           <div className="order-1 md:order-2">
-            <h3 className="text-brand-gold tracking-[0.2em] text-sm font-semibold uppercase mb-3">About Astrologer Shrikant</h3>
-            <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">Meet Astrologer Shrikant</h2>
-            <div className="space-y-4 text-gray-400 font-light leading-relaxed">
+            <h3 className="text-yellow-600 tracking-[0.2em] text-sm font-semibold uppercase mb-3">About Astrologer Shrikant</h3>
+            <h2 className="text-3xl md:text-5xl font-serif text-gray-900 mb-6">Meet Astrologer Shrikant</h2>
+            <div className="space-y-4 text-gray-600 font-light leading-relaxed">
               <p>
                 For more than 15 years, Astrologer Shrikant has dedicated his life to studying and practicing authentic Vedic astrological sciences to help people achieve clarity, success, and peace of mind.
               </p>
@@ -111,9 +113,9 @@ const Astrology = () => {
               </p>
             </div>
             
-            <div className="mt-8 pt-8 border-t border-white/10">
-              <p className="text-white font-medium mb-4">Trusted for guidance on:</p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-brand-gold/80">
+            <div className="mt-8 pt-8 border-t border-gray-200">
+              <p className="text-gray-900 font-medium mb-4">Trusted for guidance on:</p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-yellow-600/80">
                 <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Career Growth</li>
                 <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Marriage & Relationships</li>
                 <li className="flex items-center gap-2"><CheckCircle2 size={16} /> Business Success</li>
@@ -128,37 +130,75 @@ const Astrology = () => {
         </div>
       </section>
 
+      
+      {/* Products Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-6xl mx-auto text-center mb-16">
+          <h3 className="text-yellow-600 tracking-[0.2em] text-sm font-semibold uppercase mb-3">Our Products & Reports</h3>
+          <h2 className="text-3xl md:text-5xl font-serif text-gray-900">Astrology Products</h2>
+        </div>
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            { title: "Yantra", price: "Starts at ₹101/-", desc: "Sacred geometrical diagrams to attract positive energy and remove obstacles.", image: "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783749194/5d624982-3584-4769-be2c-afcd09d2d3a6.png" },
+            { title: "Sigil", price: "Starts at ₹101/-", desc: "Custom designed energetic symbols to manifest specific intentions.", image: "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783749309/6dc1921a-b387-452b-ad0d-12aff52183a5.png" },
+            { title: "Name Numerology Correction Report", price: "₹2001/-", desc: "Detailed PDF report for name correction based on your numerology.", image: "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783749389/3677a707-8180-408f-ab2d-9e4bd354f0e0.png" },
+            { title: "Numerology Report", price: "₹301/-", desc: "Comprehensive PDF report explaining your numbers and their impact.", image: "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783749473/25f2fc43-5d98-412b-ae16-392dd30b3de9.png" },
+            { title: "Astrology Kundli Report", price: "₹1001/-", desc: "Detailed PDF Kundli report covering planetary positions and predictions.", image: "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783749476/d5425429-cb9a-4a0d-bd72-c37a5e0c80bc.png" }
+          ].map((product, i) => (
+            <div key={i} className="bg-white border border-gray-200 rounded-sm overflow-hidden hover:border-yellow-500/40 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex flex-col h-full group">
+              <div className="w-full aspect-[4/3] bg-gray-50 overflow-hidden flex items-center justify-center border-b border-gray-100">
+                <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+              </div>
+              <div className="p-6 md:p-8 flex flex-col flex-grow">
+                <h4 className="text-xl font-serif text-gray-900 mb-2">{product.title}</h4>
+                <p className="text-yellow-600 font-semibold mb-4">{product.price}</p>
+                <p className="text-gray-600 font-light text-sm leading-relaxed mb-8 flex-grow">{product.desc}</p>
+                <a 
+                  href={`https://wa.me/919115731105?text=${encodeURIComponent(`Hi Astrologer Shrikant, I would like to ask for details about the ${product.title}.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-white border border-yellow-500 text-yellow-600 font-semibold tracking-wider py-3 rounded-sm hover:bg-yellow-600 hover:text-white hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2 text-sm uppercase mt-auto group-hover:bg-yellow-500 group-hover:text-white"
+                >
+                  Ask For Details <MessageCircle size={16} />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Why Choose Us */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto text-center mb-16">
-          <h3 className="text-brand-gold tracking-[0.2em] text-sm font-semibold uppercase mb-3">Why Choose Us</h3>
-          <h2 className="text-3xl md:text-5xl font-serif text-white">Why Choose Astrologer Shrikant?</h2>
+          <h3 className="text-yellow-600 tracking-[0.2em] text-sm font-semibold uppercase mb-3">Why Choose Us</h3>
+          <h2 className="text-3xl md:text-5xl font-serif text-gray-900">Why Choose Astrologer Shrikant?</h2>
         </div>
         
         <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { icon: <Clock className="text-brand-gold mb-4" size={32} />, title: "15+ Years of Experience", desc: "Over a decade of dedicated astrological practice helping clients from different backgrounds." },
-            { icon: <Star className="text-brand-gold mb-4" size={32} />, title: "Accurate & Personalized Guidance", desc: "Every horoscope is carefully analyzed based on your unique birth details, ensuring personalized insights instead of generic predictions." },
-            { icon: <ShieldCheck className="text-brand-gold mb-4" size={32} />, title: "Confidential Consultations", desc: "Your privacy is always respected. Every consultation remains completely confidential." },
-            { icon: <Sparkles className="text-brand-gold mb-4" size={32} />, title: "Practical Remedies", desc: "Receive easy-to-follow remedies that are designed to support positive life changes and personal growth." },
-            { icon: <Moon className="text-brand-gold mb-4" size={32} />, title: "Holistic Approach", desc: "Combining Astrology, Numerology, KP System, Naadi Astrology, Nakshatra Analysis, and Tarot for comprehensive guidance." },
-            { icon: <Sun className="text-brand-gold mb-4" size={32} />, title: "Trusted by Thousands", desc: "Helping individuals and families make informed life decisions with confidence." }
+            { icon: <Clock className="text-yellow-600 mb-4" size={32} />, title: "15+ Years of Experience", desc: "Over a decade of dedicated astrological practice helping clients from different backgrounds." },
+            { icon: <Star className="text-yellow-600 mb-4" size={32} />, title: "Accurate & Personalized Guidance", desc: "Every horoscope is carefully analyzed based on your unique birth details, ensuring personalized insights instead of generic predictions." },
+            { icon: <ShieldCheck className="text-yellow-600 mb-4" size={32} />, title: "Confidential Consultations", desc: "Your privacy is always respected. Every consultation remains completely confidential." },
+            { icon: <Sparkles className="text-yellow-600 mb-4" size={32} />, title: "Practical Remedies", desc: "Receive easy-to-follow remedies that are designed to support positive life changes and personal growth." },
+            { icon: <Moon className="text-yellow-600 mb-4" size={32} />, title: "Holistic Approach", desc: "Combining Astrology, Numerology, KP System, Naadi Astrology, Nakshatra Analysis, and Tarot for comprehensive guidance." },
+            { icon: <Sun className="text-yellow-600 mb-4" size={32} />, title: "Trusted by Thousands", desc: "Helping individuals and families make informed life decisions with confidence." }
           ].map((item, i) => (
-            <div key={i} className="bg-brand-surface border border-white/5 p-8 rounded-sm hover:border-brand-gold/30 transition-colors">
+            <div key={i} className="bg-white border border-gray-200 p-8 rounded-sm hover:border-yellow-500/40 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
               {item.icon}
-              <h4 className="text-xl font-serif text-white mb-3">{item.title}</h4>
-              <p className="text-gray-400 font-light text-sm leading-relaxed">{item.desc}</p>
+              <h4 className="text-xl font-serif text-gray-900 mb-3">{item.title}</h4>
+              <p className="text-gray-600 font-light text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-20 px-6 bg-brand-surface/30">
+      <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-brand-gold tracking-[0.2em] text-sm font-semibold uppercase mb-3">Our Services</h3>
-            <h2 className="text-3xl md:text-5xl font-serif text-white">Astrology Services</h2>
+            <h3 className="text-yellow-600 tracking-[0.2em] text-sm font-semibold uppercase mb-3">Our Services</h3>
+            <h2 className="text-3xl md:text-5xl font-serif text-gray-900">Astrology Services</h2>
           </div>
 
           <div className="space-y-12">
@@ -189,16 +229,16 @@ const Astrology = () => {
                 ideal: ["Love & Relationships", "Career Decisions", "Family Matters", "Emotional Healing", "Spiritual Guidance", "Personal Clarity"]
               }
             ].map((service, i) => (
-              <div key={i} className="flex flex-col md:flex-row gap-8 border-b border-white/5 pb-12 last:border-0 last:pb-0">
+              <div key={i} className="flex flex-col md:flex-row gap-8 border-b border-gray-200 pb-12 last:border-0 last:pb-0">
                 <div className="md:w-1/2">
-                  <h4 className="text-2xl font-serif text-brand-gold mb-4">{service.title}</h4>
-                  <p className="text-gray-400 font-light leading-relaxed mb-6">{service.desc}</p>
+                  <h4 className="text-2xl font-serif text-yellow-600 mb-4">{service.title}</h4>
+                  <p className="text-gray-600 font-light leading-relaxed mb-6">{service.desc}</p>
                 </div>
-                <div className="md:w-1/2 bg-brand-surface border border-brand-surface-light p-6 rounded-sm">
-                  <h5 className="text-white font-medium mb-4 uppercase tracking-widest text-xs">Ideal For:</h5>
+                <div className="md:w-1/2 bg-white border border-brand-surface-light p-6 rounded-sm">
+                  <h5 className="text-gray-900 font-medium mb-4 uppercase tracking-widest text-xs">Ideal For:</h5>
                   <div className="flex flex-wrap gap-2">
                     {service.ideal.map((item, j) => (
-                      <span key={j} className="bg-brand-bg text-gray-300 text-xs px-3 py-1.5 rounded-full border border-white/10">
+                      <span key={j} className="bg-white text-gray-700 text-xs px-3 py-1.5 rounded-full border border-gray-200">
                         {item}
                       </span>
                     ))}
@@ -215,9 +255,9 @@ const Astrology = () => {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
           {/* Benefits */}
           <div>
-            <h3 className="text-brand-gold tracking-[0.2em] text-sm font-semibold uppercase mb-3">Consultation Benefits</h3>
-            <h2 className="text-3xl font-serif text-white mb-6">What You Will Receive</h2>
-            <p className="text-gray-400 font-light mb-8">Every consultation includes:</p>
+            <h3 className="text-yellow-600 tracking-[0.2em] text-sm font-semibold uppercase mb-3">Consultation Benefits</h3>
+            <h2 className="text-3xl font-serif text-gray-900 mb-6">What You Will Receive</h2>
+            <p className="text-gray-600 font-light mb-8">Every consultation includes:</p>
             <ul className="space-y-4">
               {[
                 "Detailed Birth Chart Analysis",
@@ -231,8 +271,8 @@ const Astrology = () => {
                 "Question & Answer Session",
                 "Complete Confidentiality"
               ].map((benefit, i) => (
-                <li key={i} className="flex items-center gap-3 text-gray-300 font-light">
-                  <CheckCircle2 className="text-brand-gold" size={20} />
+                <li key={i} className="flex items-center gap-3 text-gray-700 font-light">
+                  <CheckCircle2 className="text-yellow-600" size={20} />
                   {benefit}
                 </li>
               ))}
@@ -240,14 +280,14 @@ const Astrology = () => {
           </div>
           
           {/* Remedies */}
-          <div className="bg-brand-surface p-8 md:p-10 border border-brand-gold/20 rounded-sm">
-            <h3 className="text-brand-gold tracking-[0.2em] text-sm font-semibold uppercase mb-3">Remedies Section</h3>
-            <h2 className="text-3xl font-serif text-white mb-6">Personalized Remedies That Create Positive Change</h2>
-            <p className="text-gray-400 font-light mb-6 leading-relaxed">
+          <div className="bg-white p-8 md:p-10 border border-yellow-500/30 rounded-sm">
+            <h3 className="text-yellow-600 tracking-[0.2em] text-sm font-semibold uppercase mb-3">Remedies Section</h3>
+            <h2 className="text-3xl font-serif text-gray-900 mb-6">Personalized Remedies That Create Positive Change</h2>
+            <p className="text-gray-600 font-light mb-6 leading-relaxed">
               Astrology is most valuable when it offers practical guidance—not just predictions. Astrologer Shrikant provides personalized remedies based on your unique planetary combinations to help reduce obstacles and support positive transformation.
             </p>
-            <p className="text-white font-medium mb-4">Recommendations may include:</p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm text-brand-gold/80 mb-6">
+            <p className="text-gray-900 font-medium mb-4">Recommendations may include:</p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-sm text-yellow-600/80 mb-6">
               <li>• Gemstone Guidance</li>
               <li>• Mantra Recommendations</li>
               <li>• Spiritual Practices</li>
@@ -264,10 +304,10 @@ const Astrology = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 px-6 bg-brand-surface/50 border-t border-b border-white/5">
+      <section className="py-20 px-6 bg-gray-50 border-t border-b border-gray-200">
         <div className="max-w-6xl mx-auto text-center mb-16">
-          <h3 className="text-brand-gold tracking-[0.2em] text-sm font-semibold uppercase mb-3">How It Works</h3>
-          <h2 className="text-3xl md:text-5xl font-serif text-white">4 Steps to Clarity</h2>
+          <h3 className="text-yellow-600 tracking-[0.2em] text-sm font-semibold uppercase mb-3">How It Works</h3>
+          <h2 className="text-3xl md:text-5xl font-serif text-gray-900">4 Steps to Clarity</h2>
         </div>
 
         <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -278,13 +318,13 @@ const Astrology = () => {
             { icon: <Key size={24}/>, step: "Step 4", title: "Receive Guidance", desc: "Get clear predictions, practical advice, and personalized remedies." },
           ].map((item, i) => (
             <div key={i} className="text-center relative">
-              <div className="w-16 h-16 mx-auto bg-brand-surface border border-brand-gold/30 rounded-full flex items-center justify-center text-brand-gold mb-6 relative z-10">
+              <div className="w-16 h-16 mx-auto bg-white border border-yellow-500/40 rounded-full flex items-center justify-center text-yellow-600 mb-6 relative z-10">
                 {item.icon}
               </div>
-              {i !== 3 && <div className="hidden lg:block absolute top-8 left-[60%] w-full h-[1px] bg-brand-surface-light -z-0"></div>}
-              <h4 className="text-brand-gold text-xs uppercase tracking-widest font-semibold mb-2">{item.step}</h4>
-              <h5 className="text-white font-serif text-lg mb-3">{item.title}</h5>
-              <p className="text-gray-400 font-light text-sm">{item.desc}</p>
+              {i !== 3 && <div className="hidden lg:block absolute top-8 left-[60%] w-full h-[1px] bg-gray-200 -z-0"></div>}
+              <h4 className="text-yellow-600 text-xs uppercase tracking-widest font-semibold mb-2">{item.step}</h4>
+              <h5 className="text-gray-900 font-serif text-lg mb-3">{item.title}</h5>
+              <p className="text-gray-600 font-light text-sm">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -293,8 +333,8 @@ const Astrology = () => {
       {/* Testimonials */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto text-center mb-16">
-          <h3 className="text-brand-gold tracking-[0.2em] text-sm font-semibold uppercase mb-3">Testimonials</h3>
-          <h2 className="text-3xl md:text-5xl font-serif text-white">What Our Clients Say</h2>
+          <h3 className="text-yellow-600 tracking-[0.2em] text-sm font-semibold uppercase mb-3">Testimonials</h3>
+          <h2 className="text-3xl md:text-5xl font-serif text-gray-900">What Our Clients Say</h2>
         </div>
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -305,7 +345,7 @@ const Astrology = () => {
             "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783685527/WhatsApp_Image_2026-07-10_at_5.33.22_PM_1_xy6a1p.jpg",
             "https://res.cloudinary.com/dm3scoj2q/image/upload/v1783685526/WhatsApp_Image_2026-07-10_at_5.33.23_PM_qiwzb9.jpg"
           ].map((imgSrc, i) => (
-            <div key={i} className="bg-brand-surface border border-white/5 rounded-sm overflow-hidden flex flex-col items-center justify-center p-2 shadow-lg">
+            <div key={i} className="bg-white border border-gray-200 rounded-sm overflow-hidden flex flex-col items-center justify-center p-2 shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
               <img src={imgSrc} alt={`Testimonial ${i + 1}`} className="w-full h-auto object-contain max-h-[600px]" />
             </div>
           ))}
@@ -313,25 +353,25 @@ const Astrology = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-6 bg-brand-surface/30">
+      <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-brand-gold tracking-[0.2em] text-sm font-semibold uppercase mb-3">FAQ</h3>
-            <h2 className="text-3xl md:text-5xl font-serif text-white">Frequently Asked Questions</h2>
+            <h3 className="text-yellow-600 tracking-[0.2em] text-sm font-semibold uppercase mb-3">FAQ</h3>
+            <h2 className="text-3xl md:text-5xl font-serif text-gray-900">Frequently Asked Questions</h2>
           </div>
 
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="border border-white/10 rounded-sm overflow-hidden bg-brand-surface">
+              <div key={index} className="border border-gray-200 rounded-sm overflow-hidden bg-white hover:border-yellow-500/30 transition-colors">
                 <button
                   className="w-full text-left px-6 py-4 flex items-center justify-between focus:outline-none"
                   onClick={() => toggleFaq(index)}
                 >
-                  <span className="font-serif text-white text-lg">{faq.question}</span>
+                  <span className="font-serif text-gray-900 text-lg">{faq.question}</span>
                   {openFaq === index ? (
-                    <ChevronUp className="text-brand-gold flex-shrink-0" size={20} />
+                    <ChevronUp className="text-yellow-600 flex-shrink-0" size={20} />
                   ) : (
-                    <ChevronDown className="text-gray-400 flex-shrink-0" size={20} />
+                    <ChevronDown className="text-gray-600 flex-shrink-0" size={20} />
                   )}
                 </button>
                 <div 
@@ -339,7 +379,7 @@ const Astrology = () => {
                     openFaq === index ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="text-gray-400 font-light">{faq.answer}</p>
+                  <p className="text-gray-600 font-light">{faq.answer}</p>
                 </div>
               </div>
             ))}
@@ -348,26 +388,26 @@ const Astrology = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 px-6 border-t border-brand-gold/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-brand-surface/80"></div>
+      <section className="py-24 px-6 border-t border-yellow-500/30 relative overflow-hidden">
+        <div className="absolute inset-0 bg-white/90"></div>
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">Your Future Begins with the Right Guidance</h2>
-          <p className="text-gray-300 font-light mb-6 leading-relaxed">
+          <h2 className="text-3xl md:text-5xl font-serif text-gray-900 mb-6">Your Future Begins with the Right Guidance</h2>
+          <p className="text-gray-700 font-light mb-6 leading-relaxed">
             Every life has its challenges, opportunities, and turning points. Understanding your unique cosmic blueprint can help you approach these moments with greater clarity and confidence.
           </p>
-          <p className="text-gray-400 font-light mb-10 leading-relaxed">
+          <p className="text-gray-600 font-light mb-10 leading-relaxed">
             Whether you're seeking answers about your career, relationships, finances, health, or life's purpose, Astrologer Shrikant offers personalized guidance rooted in years of experience and traditional astrological knowledge.
           </p>
-          <button onClick={scrollToBooking} className="bg-brand-gold text-black font-semibold px-10 py-5 rounded-sm tracking-widest uppercase hover:bg-brand-gold-dark transition-colors inline-flex items-center justify-center gap-2 text-lg">
+          <button onClick={scrollToBooking} className="bg-yellow-500 text-white font-semibold px-10 py-5 rounded-sm tracking-widest uppercase hover:bg-yellow-600 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 inline-flex items-center justify-center gap-2 text-lg">
             Book Your Consultation
           </button>
         </div>
       </section>
 
       {/* Footer Quote */}
-      <footer className="py-12 px-6 bg-black text-center border-t border-white/5">
+      <footer className="py-12 px-6 bg-gray-50 text-center border-t border-gray-200">
         <div className="max-w-4xl mx-auto">
-          <p className="text-brand-gold font-serif text-xl md:text-2xl italic leading-relaxed mb-6">
+          <p className="text-yellow-600 font-serif text-xl md:text-2xl italic leading-relaxed mb-6">
             "The stars incline, they do not bind. With the right knowledge and thoughtful guidance, you can navigate your destiny with confidence."
           </p>
           <p className="text-gray-500 text-sm tracking-widest uppercase">
@@ -375,6 +415,7 @@ const Astrology = () => {
           </p>
         </div>
       </footer>
+      <AstrologyLeadForm isOpen={isLeadFormOpen} onClose={() => setIsLeadFormOpen(false)} />
     </div>
   );
 };
